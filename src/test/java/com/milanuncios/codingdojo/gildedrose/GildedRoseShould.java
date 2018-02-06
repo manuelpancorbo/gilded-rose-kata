@@ -44,4 +44,14 @@ public class GildedRoseShould {
 
     assertEquals(6, gildedRose.items[0].quality);
   }
+
+  @Test
+  public void not_increase_an_item_quality_over_50() {
+    Item item = new Item("Aged Brie", 5, 50);
+    GildedRose gildedRose = new GildedRose(new Item[]{item});
+
+    gildedRose.updateQuality();
+
+    assertEquals(50, gildedRose.items[0].quality);
+  }
 }
