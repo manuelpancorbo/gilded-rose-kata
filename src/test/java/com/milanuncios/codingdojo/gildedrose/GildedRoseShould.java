@@ -57,11 +57,21 @@ public class GildedRoseShould {
 
   @Test
   public void not_decrease_sell_in_of_sulfuras() {
-    Item item = new Item("Sulfuras, Hand of Ragnaros", 5, 5);
-    GildedRose gildedRose = new GildedRose(new Item[]{item});
+    Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 5, 5);
+    GildedRose gildedRose = new GildedRose(new Item[]{sulfuras});
 
     gildedRose.updateQuality();
 
     assertEquals(5, gildedRose.items[0].sellIn);
+  }
+
+  @Test
+  public void not_degrade_quality_of_sulfuras() {
+    Item sulfuras = new Item("Sulfuras, Hand of Ragnaros", 5, 5);
+    GildedRose gildedRose = new GildedRose(new Item[]{sulfuras});
+
+    gildedRose.updateQuality();
+
+    assertEquals(5, gildedRose.items[0].quality);
   }
 }
