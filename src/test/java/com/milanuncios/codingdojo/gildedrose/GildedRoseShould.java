@@ -14,4 +14,14 @@ public class GildedRoseShould {
 
     assertEquals(4, gildedRose.items[0].sellIn);
   }
+
+  @Test
+  public void decrease_quality_after_every_day() {
+    Item regularItem = new Item("any name", 5, 5);
+    GildedRose gildedRose = new GildedRose(new Item[]{regularItem});
+
+    gildedRose.updateQuality();
+
+    assertEquals(4, gildedRose.items[0].quality);
+  }
 }
