@@ -74,4 +74,14 @@ public class GildedRoseShould {
 
     assertEquals(5, gildedRose.items[0].quality);
   }
+
+  @Test
+  public void increase_quality_after_every_day_when_sell_in_date_is_greater_than_10() {
+    Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 5);
+    GildedRose gildedRose = new GildedRose(new Item[]{backstagePasses});
+
+    gildedRose.updateQuality();
+
+    assertEquals(6, gildedRose.items[0].quality);
+  }
 }
