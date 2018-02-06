@@ -104,4 +104,14 @@ public class GildedRoseShould {
 
     assertEquals(8, gildedRose.items[0].quality);
   }
+
+  @Test
+  public void degrade_quality_to_0_of_backstage_pass_after_the_concert() {
+    Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5);
+    GildedRose gildedRose = new GildedRose(new Item[]{backstagePasses});
+
+    gildedRose.updateQuality();
+
+    assertEquals(0, gildedRose.items[0].quality);
+  }
 }
