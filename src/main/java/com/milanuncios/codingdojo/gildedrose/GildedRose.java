@@ -1,9 +1,13 @@
 package com.milanuncios.codingdojo.gildedrose;
 
 public class GildedRose {
+  private static final int MAX_QUALITY = 50;
+  private static final int MIN_QUALITY = 0;
+  private static final int MIN_SELL_IN = 0;
+
   Item[] items;
 
-  public GildedRose(Item[] items) {
+  GildedRose(Item[] items) {
     this.items = items;
   }
 
@@ -11,53 +15,69 @@ public class GildedRose {
     for (Item item : items) {
       if (isNotAgedBrie(item)
           && !isBackstagePass(item)) {
-        if (item.quality > 0) {
+        if (item.quality > MIN_QUALITY) {
           if (isNotSulfuras(item)) {
-            item.quality = item.quality - 1;
+            degradeQuality(item);
           }
         }
       } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1;
+        if (item.quality < MAX_QUALITY) {
+          increaseQuality(item);
 
           if (isBackstagePass(item)) {
             if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
+              if (item.quality < MAX_QUALITY) {
+                increaseQuality(item);
               }
             }
 
             if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
+              if (item.quality < MAX_QUALITY) {
+                increaseQuality(item);
               }
             }
           }
         }
       }
 
-      if (isNotSulfuras(item)) {
-        item.sellIn = item.sellIn - 1;
-      }
+      updateSellIn(item);
 
-      if (item.sellIn < 0) {
+      if (item.sellIn < MIN_SELL_IN) {
         if (isNotAgedBrie(item)) {
           if (!isBackstagePass(item)) {
-            if (item.quality > 0) {
+            if (item.quality > MIN_QUALITY) {
               if (isNotSulfuras(item)) {
-                item.quality = item.quality - 1;
+                degradeQuality(item);
               }
             }
           } else {
-            item.quality = item.quality - item.quality;
+            item.quality = MIN_QUALITY;
           }
         } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
+          if (item.quality < MAX_QUALITY) {
+            increaseQuality(item);
           }
         }
       }
     }
+  }
+
+  private void updateSellIn(Item item) {
+    if (isNotSulfuras(item)) {
+      decreaseSellIn(item);
+    }
+  }
+
+  private void increaseQuality(Item item) {
+    item.quality += 1;
+  }
+
+  private void degradeQuality(Item item) {
+    item.quality -= 1;
+  }
+
+  private void decreaseSellIn(Item item) {
+    item.sellIn -= 1;
   }
 
   private boolean isNotSulfuras(Item item) {
