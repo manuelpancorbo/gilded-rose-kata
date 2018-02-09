@@ -13,53 +13,58 @@ public class GildedRose {
 
   public void updateQuality() {
     for (Item item : items) {
-      if (isNotAgedBrie(item)
-          && !isBackstagePass(item)) {
-        if (item.quality > MIN_QUALITY) {
-          if (isNotSulfuras(item)) {
-            degradeQuality(item);
-          }
-        }
-      } else {
-        if (item.quality < MAX_QUALITY) {
-          increaseQuality(item);
-
-          if (isBackstagePass(item)) {
-            if (item.sellIn < 11) {
-              if (item.quality < MAX_QUALITY) {
-                increaseQuality(item);
-              }
-            }
-
-            if (item.sellIn < 6) {
-              if (item.quality < MAX_QUALITY) {
-                increaseQuality(item);
-              }
-            }
-          }
-        }
-      }
-
+      updateQuality(item);
       updateSellIn(item);
+    }
+  }
 
-      if (item.sellIn < MIN_SELL_IN) {
-        if (isNotAgedBrie(item)) {
-          if (!isBackstagePass(item)) {
-            if (item.quality > MIN_QUALITY) {
-              if (isNotSulfuras(item)) {
-                degradeQuality(item);
-              }
+  private void updateQuality(Item item) {
+    if (isNotAgedBrie(item) && isNotBackstagePass(item)) {
+      if (item.quality > MIN_QUALITY && isNotSulfuras(item)) {
+          degradeQuality(item);
+      }
+    } else {
+      if (item.quality < MAX_QUALITY) {
+        increaseQuality(item);
+
+        if (isBackstagePass(item)) {
+          if (item.sellIn < 11) {
+            if (item.quality < MAX_QUALITY) {
+              increaseQuality(item);
             }
-          } else {
-            item.quality = MIN_QUALITY;
           }
-        } else {
-          if (item.quality < MAX_QUALITY) {
-            increaseQuality(item);
+
+          if (item.sellIn < 6) {
+            if (item.quality < MAX_QUALITY) {
+              increaseQuality(item);
+            }
           }
         }
       }
     }
+
+
+    if (item.sellIn == MIN_SELL_IN) {
+      if (isNotAgedBrie(item)) {
+        if (isNotBackstagePass(item)) {
+          if (item.quality > MIN_QUALITY) {
+            if (isNotSulfuras(item)) {
+              degradeQuality(item);
+            }
+          }
+        } else {
+          item.quality = MIN_QUALITY;
+        }
+      } else {
+        if (item.quality < MAX_QUALITY) {
+          increaseQuality(item);
+        }
+      }
+    }
+  }
+
+  private boolean isNotBackstagePass(Item item) {
+    return !isBackstagePass(item);
   }
 
   private void updateSellIn(Item item) {
