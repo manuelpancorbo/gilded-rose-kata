@@ -51,7 +51,6 @@ public class GildedRose {
         increaseQuality(item);
       }
     }
-    return;
   }
 
   private void updateQualityForAgedBrie(Item item) {
@@ -102,10 +101,6 @@ public class GildedRose {
 
   private boolean isNotSulfuras(Item item) {
     return !isSulfuras(item);
-  }
-
-  private boolean isNotAgedBrie(Item item) {
-    return !isAgedBrie(item);
   }
 
   private boolean isBackstagePass(Item item) {
