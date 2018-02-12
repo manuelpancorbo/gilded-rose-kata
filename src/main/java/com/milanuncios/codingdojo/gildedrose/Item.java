@@ -40,4 +40,8 @@ public class Item {
   Integer getSellIn() {
     return sellIn;
   }
+
+  void degradeQualityToMinimum() {
+    quality = MIN_QUALITY;
+  }
 }

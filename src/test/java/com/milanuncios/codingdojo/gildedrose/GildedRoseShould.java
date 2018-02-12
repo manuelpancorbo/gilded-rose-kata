@@ -77,7 +77,7 @@ public class GildedRoseShould {
 
   @Test
   public void increase_quality_of_backstage_when_sell_in_date_is_greater_than_10() {
-    Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 11, 5);
+    Item backstagePasses = new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 11, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{backstagePasses});
 
     gildedRose.updateQuality();
@@ -87,7 +87,7 @@ public class GildedRoseShould {
 
   @Test
   public void increase_quality_of_backstage_twice_faster_when_sell_in_date_is_less_than_or_equal_to_10() {
-    Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 10, 5);
+    Item backstagePasses = new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 10, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{backstagePasses});
 
     gildedRose.updateQuality();
@@ -97,7 +97,7 @@ public class GildedRoseShould {
 
   @Test
   public void increase_quality_of_backstage_three_times_faster_when_sell_in_date_is_less_than_or_equal_to_5() {
-    Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 5, 5);
+    Item backstagePasses = new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 5, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{backstagePasses});
 
     gildedRose.updateQuality();
@@ -107,7 +107,7 @@ public class GildedRoseShould {
 
   @Test
   public void degrade_quality_to_0_of_backstage_pass_after_the_concert() {
-    Item backstagePasses = new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5);
+    Item backstagePasses = new BackstagePasses("Backstage passes to a TAFKAL80ETC concert", 0, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{backstagePasses});
 
     gildedRose.updateQuality();
