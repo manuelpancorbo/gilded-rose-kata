@@ -5,9 +5,9 @@ public abstract class Item {
   private static final Integer MIN_QUALITY = 0;
   private static final Integer MAX_QUALITY = 50;
 
-  public int sellIn;
-  public int quality;
-  public String name;
+  private int sellIn;
+  private int quality;
+  private String name;
 
   Item(String name, int sellIn, int quality) {
     this.name = name;
@@ -15,9 +15,11 @@ public abstract class Item {
     this.quality = quality;
   }
 
-  public void updateQuality(){}
+  public void updateQuality() {
+  }
 
-  public void updateSellin(){}
+  public void updateSellin() {
+  }
 
   void degradeQuality() {
     if (quality > MIN_QUALITY) {
@@ -37,8 +39,12 @@ public abstract class Item {
     }
   }
 
-  Integer getSellIn() {
+  public Integer getSellIn() {
     return sellIn;
+  }
+
+  public Integer getQuality() {
+    return quality;
   }
 
   void degradeQualityToMinimum() {
