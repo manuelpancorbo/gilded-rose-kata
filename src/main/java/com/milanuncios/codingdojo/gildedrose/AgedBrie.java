@@ -13,8 +13,6 @@ public class AgedBrie extends Item {
     }
   }
 
-
-
   @Override
   public void updateSellin() {
     decreaseSellIn();
