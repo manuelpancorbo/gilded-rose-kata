@@ -19,7 +19,6 @@ public class GildedRose {
   }
 
   private void updateQuality(Item item) {
-
     if (isSulfuras(item)) {
       return;
     }
@@ -76,9 +75,11 @@ public class GildedRose {
   }
 
   private void updateSellIn(Item item) {
-    if (isNotSulfuras(item)) {
-      decreaseSellIn(item);
+    if (isSulfuras(item)) {
+      return;
     }
+
+    decreaseSellIn(item);
   }
 
   private void increaseQuality(Item item) {
@@ -97,10 +98,6 @@ public class GildedRose {
     if (item.sellIn > MIN_SELL_IN) {
       item.sellIn -= 1;
     }
-  }
-
-  private boolean isNotSulfuras(Item item) {
-    return !isSulfuras(item);
   }
 
   private boolean isBackstagePass(Item item) {
