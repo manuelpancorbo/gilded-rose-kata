@@ -19,24 +19,31 @@ public class GildedRose {
   }
 
   private void updateQuality(Item item) {
+
+    if (isSulfuras(item)) {
+      return;
+    }
+
     if (isNotAgedBrie(item) && isNotBackstagePass(item)) {
-      if (item.quality > MIN_QUALITY && isNotSulfuras(item)) {
+        degradeQuality(item);
+        if (item.sellIn == MIN_SELL_IN) {
           degradeQuality(item);
-      }
+        }
     } else {
       if (item.quality < MAX_QUALITY) {
         increaseQuality(item);
 
         if (isBackstagePass(item)) {
-          if (item.sellIn < 11) {
-            if (item.quality < MAX_QUALITY) {
-              increaseQuality(item);
-            }
-          }
+          if (item.sellIn == MIN_SELL_IN) {
+            item.quality = MIN_QUALITY;
+          } else {
 
-          if (item.sellIn < 6) {
-            if (item.quality < MAX_QUALITY) {
-              increaseQuality(item);
+            if (item.sellIn < 11) {
+                increaseQuality(item);
+            }
+
+            if (item.sellIn < 6) {
+                increaseQuality(item);
             }
           }
         }
@@ -44,23 +51,17 @@ public class GildedRose {
     }
 
 
-    if (item.sellIn == MIN_SELL_IN) {
-      if (isNotAgedBrie(item)) {
-        if (isNotBackstagePass(item)) {
-          if (item.quality > MIN_QUALITY) {
-            if (isNotSulfuras(item)) {
-              degradeQuality(item);
-            }
-          }
-        } else {
-          item.quality = MIN_QUALITY;
-        }
-      } else {
-        if (item.quality < MAX_QUALITY) {
-          increaseQuality(item);
-        }
-      }
+    if (item.sellIn == MIN_SELL_IN && isAgedBrie(item) ) {
+      increaseQuality(item);
     }
+  }
+
+  private boolean isSulfuras(Item item) {
+    return item.name.equals("Sulfuras, Hand of Ragnaros");
+  }
+
+  private boolean isAgedBrie(Item item) {
+    return item.name.equals("Aged Brie");
   }
 
   private boolean isNotBackstagePass(Item item) {
@@ -74,23 +75,29 @@ public class GildedRose {
   }
 
   private void increaseQuality(Item item) {
-    item.quality += 1;
+    if (item.quality < MAX_QUALITY) {
+      item.quality += 1;
+    }
   }
 
   private void degradeQuality(Item item) {
-    item.quality -= 1;
+    if (item.quality > MIN_QUALITY) {
+      item.quality -= 1;
+    }
   }
 
   private void decreaseSellIn(Item item) {
-    item.sellIn -= 1;
+    if (item.sellIn > MIN_SELL_IN) {
+      item.sellIn -= 1;
+    }
   }
 
   private boolean isNotSulfuras(Item item) {
-    return !item.name.equals("Sulfuras, Hand of Ragnaros");
+    return !isSulfuras(item);
   }
 
   private boolean isNotAgedBrie(Item item) {
-    return !item.name.equals("Aged Brie");
+    return !isAgedBrie(item);
   }
 
   private boolean isBackstagePass(Item item) {
