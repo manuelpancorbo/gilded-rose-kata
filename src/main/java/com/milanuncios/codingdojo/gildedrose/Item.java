@@ -7,10 +7,8 @@ public abstract class Item {
 
   private int sellIn;
   private int quality;
-  private String name;
 
-  Item(String name, int sellIn, int quality) {
-    this.name = name;
+  Item(int sellIn, int quality) {
     this.sellIn = sellIn;
     this.quality = quality;
   }

@@ -1,8 +1,8 @@
 package com.milanuncios.codingdojo.gildedrose;
 
 public class BackstagePasses extends Item {
-  BackstagePasses(String name, int sellIn, int quality) {
-    super(name, sellIn, quality);
+  BackstagePasses(int sellIn, int quality) {
+    super(sellIn, quality);
   }
 
   @Override

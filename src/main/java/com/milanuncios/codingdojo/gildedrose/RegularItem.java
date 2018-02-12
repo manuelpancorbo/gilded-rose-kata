@@ -1,8 +1,8 @@
 package com.milanuncios.codingdojo.gildedrose;
 
 public class RegularItem extends Item {
-  RegularItem(String name, Integer sellIn, Integer quality) {
-    super(name, sellIn, quality);
+  RegularItem(Integer sellIn, Integer quality) {
+    super(sellIn, quality);
   }
 
   public void updateQuality() {
