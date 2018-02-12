@@ -13,7 +13,7 @@ public class GildedRose {
 
   public void updateQuality() {
     for (Item item : items) {
-      if (item instanceof RegularItem || item instanceof Sulfuras) {
+      if (item instanceof RegularItem || item instanceof Sulfuras || item instanceof AgedBrie) {
         item.updateQuality();
         item.updateSellin();
       } else {
@@ -24,11 +24,6 @@ public class GildedRose {
   }
 
   private void updateQuality(Item item) {
-    if (isAgedBrie(item)) {
-      updateQualityForAgedBrie(item);
-      return;
-    }
-
     if (isBackstagePass(item)) {
       updateQualityForBackstage(item);
     }
@@ -48,18 +43,6 @@ public class GildedRose {
         increaseQuality(item);
       }
     }
-  }
-
-  private void updateQualityForAgedBrie(Item item) {
-    increaseQuality(item);
-    if (item.sellIn == MIN_SELL_IN) {
-      increaseQuality(item);
-    }
-  }
-
-
-  private boolean isAgedBrie(Item item) {
-    return item.name.equals("Aged Brie");
   }
 
   private void updateSellIn(Item item) {

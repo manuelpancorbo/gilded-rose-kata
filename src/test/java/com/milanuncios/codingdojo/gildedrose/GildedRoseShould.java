@@ -37,7 +37,7 @@ public class GildedRoseShould {
 
   @Test
   public void increase_aged_brie_quality_after_every_day() {
-    Item agedBrie = new Item("Aged Brie", 5, 5);
+    Item agedBrie = new AgedBrie("Aged Brie", 5, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{agedBrie});
 
     gildedRose.updateQuality();
@@ -47,7 +47,7 @@ public class GildedRoseShould {
 
   @Test
   public void not_increase_an_item_quality_over_50() {
-    Item agedBrie = new Item("Aged Brie", 5, 50);
+    Item agedBrie = new AgedBrie("Aged Brie", 5, 50);
     GildedRose gildedRose = new GildedRose(new Item[]{agedBrie});
 
     gildedRose.updateQuality();
