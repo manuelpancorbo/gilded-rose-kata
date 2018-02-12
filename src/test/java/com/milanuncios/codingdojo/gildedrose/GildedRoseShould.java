@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class GildedRoseShould {
   @Test
   public void decrease_sell_in_after_every_day() {
-    Item item = new Item("any name", 5, 5);
+    Item item = new RegularItem("any name", 5, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{item});
 
     gildedRose.updateQuality();
@@ -17,7 +17,7 @@ public class GildedRoseShould {
 
   @Test
   public void degrade_quality_after_every_day() {
-    Item item = new Item("any name", 5, 5);
+    Item item = new RegularItem("any name", 5, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{item});
 
     gildedRose.updateQuality();
@@ -27,7 +27,7 @@ public class GildedRoseShould {
 
   @Test
   public void degrade_twice_faster_after_item_sell_in_date_has_passed() {
-    Item item = new Item("any name", 0, 5);
+    Item item = new RegularItem("any name", 0, 5);
     GildedRose gildedRose = new GildedRose(new Item[]{item});
 
     gildedRose.updateQuality();

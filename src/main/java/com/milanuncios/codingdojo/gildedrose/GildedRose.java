@@ -13,8 +13,13 @@ public class GildedRose {
 
   public void updateQuality() {
     for (Item item : items) {
-      updateQuality(item);
-      updateSellIn(item);
+      if (item instanceof RegularItem) {
+        item.updateQuality();
+        item.updateSellin();
+      } else {
+        updateQuality(item);
+        updateSellIn(item);
+      }
     }
   }
 
@@ -30,10 +35,7 @@ public class GildedRose {
 
     if (isBackstagePass(item)) {
       updateQualityForBackstage(item);
-      return;
     }
-
-    updateQualityForRegularItem(item);
   }
 
   private void updateQualityForBackstage(Item item) {
