@@ -1,6 +1,6 @@
 package com.milanuncios.codingdojo.gildedrose;
 
-public class Item {
+public abstract class Item {
   static final Integer MIN_SELL_IN = 0;
   private static final Integer MIN_QUALITY = 0;
   private static final Integer MAX_QUALITY = 50;
