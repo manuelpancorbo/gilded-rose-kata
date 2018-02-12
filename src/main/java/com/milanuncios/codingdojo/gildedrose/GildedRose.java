@@ -24,33 +24,47 @@ public class GildedRose {
       return;
     }
 
-    if (isNotAgedBrie(item) && isNotBackstagePass(item)) {
-      degradeQuality(item);
-      if (item.sellIn == MIN_SELL_IN) {
-        degradeQuality(item);
-      }
-    } else {
-      increaseQuality(item);
-
-      if (isBackstagePass(item)) {
-        if (item.sellIn == MIN_SELL_IN) {
-          item.quality = MIN_QUALITY;
-        } else {
-
-          if (item.sellIn < 11) {
-            increaseQuality(item);
-          }
-
-          if (item.sellIn < 6) {
-            increaseQuality(item);
-          }
-        }
-      }
+    if (isAgedBrie(item)) {
+      updateQualityForAgedBrie(item);
+      return;
     }
 
+    if (isBackstagePass(item)) {
+      updateQualityForBackstage(item);
+      return;
+    }
 
-    if (item.sellIn == MIN_SELL_IN && isAgedBrie(item)) {
+    updateQualityForRegularItem(item);
+  }
+
+  private void updateQualityForBackstage(Item item) {
+    increaseQuality(item);
+    if (item.sellIn == MIN_SELL_IN) {
+      item.quality = MIN_QUALITY;
+    } else {
+
+      if (item.sellIn < 11) {
+        increaseQuality(item);
+      }
+
+      if (item.sellIn < 6) {
+        increaseQuality(item);
+      }
+    }
+    return;
+  }
+
+  private void updateQualityForAgedBrie(Item item) {
+    increaseQuality(item);
+    if (item.sellIn == MIN_SELL_IN) {
       increaseQuality(item);
+    }
+  }
+
+  private void updateQualityForRegularItem(Item item) {
+    degradeQuality(item);
+    if (item.sellIn == MIN_SELL_IN) {
+      degradeQuality(item);
     }
   }
 
@@ -60,10 +74,6 @@ public class GildedRose {
 
   private boolean isAgedBrie(Item item) {
     return item.name.equals("Aged Brie");
-  }
-
-  private boolean isNotBackstagePass(Item item) {
-    return !isBackstagePass(item);
   }
 
   private void updateSellIn(Item item) {
