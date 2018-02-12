@@ -13,7 +13,7 @@ public class GildedRose {
 
   public void updateQuality() {
     for (Item item : items) {
-      if (item instanceof RegularItem) {
+      if (item instanceof RegularItem || item instanceof Sulfuras) {
         item.updateQuality();
         item.updateSellin();
       } else {
@@ -24,10 +24,6 @@ public class GildedRose {
   }
 
   private void updateQuality(Item item) {
-    if (isSulfuras(item)) {
-      return;
-    }
-
     if (isAgedBrie(item)) {
       updateQualityForAgedBrie(item);
       return;
@@ -61,38 +57,18 @@ public class GildedRose {
     }
   }
 
-  private void updateQualityForRegularItem(Item item) {
-    degradeQuality(item);
-    if (item.sellIn == MIN_SELL_IN) {
-      degradeQuality(item);
-    }
-  }
-
-  private boolean isSulfuras(Item item) {
-    return item.name.equals("Sulfuras, Hand of Ragnaros");
-  }
 
   private boolean isAgedBrie(Item item) {
     return item.name.equals("Aged Brie");
   }
 
   private void updateSellIn(Item item) {
-    if (isSulfuras(item)) {
-      return;
-    }
-
     decreaseSellIn(item);
   }
 
   private void increaseQuality(Item item) {
     if (item.quality < MAX_QUALITY) {
       item.quality += 1;
-    }
-  }
-
-  private void degradeQuality(Item item) {
-    if (item.quality > MIN_QUALITY) {
-      item.quality -= 1;
     }
   }
 
