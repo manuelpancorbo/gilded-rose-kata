@@ -1,16 +1,19 @@
 package com.milanuncios.codingdojo.gildedrose;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class GildedRose {
-  Item[] items;
+  List<Item> items;
 
   GildedRose(Item[] items) {
-    this.items = items;
+    this.items = Arrays.asList(items);
   }
 
   public void updateQuality() {
-    for (Item item : items) {
-        item.updateQuality();
-        item.updateSellin();
-    }
+    items.forEach(item -> {
+      item.updateQuality();
+      item.updateSellin();
+    });
   }
 }
