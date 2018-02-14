@@ -7,19 +7,28 @@ public class BackstagePasses extends Item {
 
   @Override
   public void updateQuality() {
-    increaseQuality();
     if (getSellIn().equals(MIN_SELL_IN)) {
       degradeQualityToMinimum();
       return;
     }
 
-    if (getSellIn() < 11) {
+    increaseQuality();
+
+    if (shouldIncreaseQualityTwice()) {
       increaseQuality();
     }
 
-    if (getSellIn() < 6) {
+    if (shouldIncreaseQualityThreeTimes()) {
       increaseQuality();
     }
+  }
+
+  private boolean shouldIncreaseQualityThreeTimes() {
+    return getSellIn() <= 5;
+  }
+
+  private boolean shouldIncreaseQualityTwice() {
+    return getSellIn() <= 10;
   }
 
   @Override
