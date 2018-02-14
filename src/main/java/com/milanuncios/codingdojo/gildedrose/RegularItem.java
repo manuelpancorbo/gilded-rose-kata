@@ -12,7 +12,7 @@ public class RegularItem extends Item {
     }
   }
 
-  public void updateSellin() {
+  public void updateSellIn() {
     decreaseSellIn();
   }
 }

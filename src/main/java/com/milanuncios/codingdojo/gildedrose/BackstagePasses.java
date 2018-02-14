@@ -32,7 +32,7 @@ public class BackstagePasses extends Item {
   }
 
   @Override
-  public void updateSellin() {
+  public void updateSellIn() {
     decreaseSellIn();
   }
 }

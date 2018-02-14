@@ -14,7 +14,7 @@ public class AgedBrie extends Item {
   }
 
   @Override
-  public void updateSellin() {
+  public void updateSellIn() {
     decreaseSellIn();
   }
 }

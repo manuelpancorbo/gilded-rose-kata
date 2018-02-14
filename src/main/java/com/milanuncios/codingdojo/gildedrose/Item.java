@@ -16,7 +16,7 @@ public abstract class Item {
   public void updateQuality() {
   }
 
-  public void updateSellin() {
+  public void updateSellIn() {
   }
 
   void degradeQuality() {
