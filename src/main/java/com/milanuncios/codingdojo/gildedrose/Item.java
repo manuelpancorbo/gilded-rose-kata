@@ -13,11 +13,9 @@ public abstract class Item {
     this.quality = quality;
   }
 
-  public void updateQuality() {
-  }
+  public abstract void updateQuality();
 
-  public void updateSellIn() {
-  }
+  public abstract void updateSellIn();
 
   void degradeQuality() {
     if (quality > MIN_QUALITY) {
